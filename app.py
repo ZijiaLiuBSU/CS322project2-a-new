@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
@@ -22,7 +22,7 @@ movies = [
 @app.route("/")
 @app.route("/home")
 def home():
-    return "Movie Watch List app is running."
+    return render_template("home.html", movies=movies)
 
 if __name__ == "__main__":
     app.run(debug=True)
