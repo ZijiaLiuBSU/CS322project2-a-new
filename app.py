@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
 
 app = Flask(__name__)
 
@@ -18,6 +18,17 @@ movies = [
         "year": 2001
     }
 ]
+
+def get_next_id():
+    if len(movies) == 0:
+        return 1
+
+    max_id = movies[0]["id"]
+    for movie in movies:
+        if movie["id"] > max_id:
+            max_id = movie["id"]
+
+    return max_id + 1
 
 @app.route("/")
 @app.route("/home")
@@ -66,7 +77,15 @@ def new_movie():
         elif int(year) < 1888 or int(year) > 2100:
             error = "Year must be between 1888 and 2100."
         else:
-            success = "Form input looks good."
+            movie = {
+                "id": get_next_id(),
+                "title": title,
+                "genre": genre,
+                "director": director,
+                "year": int(year)
+            }
+            movies.append(movie)
+            return redirect(url_for("home"))
 
     return render_template("new_movie.html", error=error, success=success, form_data=form_data)
 
