@@ -23,6 +23,10 @@
                         <p class="card-text"><strong>Genre:</strong> {{ movie.genre }}</p>
                         <p class="card-text"><strong>Director:</strong> {{ movie.director }}</p>
                         <p class="card-text"><strong>Year:</strong> {{ movie.year }}</p>
+
+                        <form action="/delete_movie/{{ movie.id }}" method="POST">
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
                     </div>
                 </div>
             </div>

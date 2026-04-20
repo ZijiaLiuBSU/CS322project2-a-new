@@ -89,5 +89,14 @@ def new_movie():
 
     return render_template("new_movie.html", error=error, success=success, form_data=form_data)
 
+@app.route("/delete_movie/<int:movie_id>", methods=["POST"])
+def delete_movie(movie_id):
+    for movie in movies:
+        if movie["id"] == movie_id:
+            movies.remove(movie)
+            break
+
+    return redirect(url_for("home"))
+
 if __name__ == "__main__":
     app.run(debug=True)
