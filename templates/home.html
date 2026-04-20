@@ -1,19 +1,33 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Watch List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h1>My Movie Watch List</h1>
+<body class="bg-light">
+    <div class="container py-4">
+        <h1 class="text-center mb-4">My Movie Watch List</h1>
 
-    {% for movie in movies %}
-        <div>
-            <p>Title: {{ movie.title }}</p>
-            <p>Genre: {{ movie.genre }}</p>
-            <p>Director: {{ movie.director }}</p>
-            <p>Year: {{ movie.year }}</p>
-            <hr>
+        <div class="text-center mb-4">
+            <a href="/new_movie" class="btn btn-primary">Add Movie</a>
         </div>
-    {% endfor %}
+
+        <div class="row">
+            {% for movie in movies %}
+            <div class="col-md-6 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ movie.title }}</h4>
+                        <p class="card-text"><strong>Genre:</strong> {{ movie.genre }}</p>
+                        <p class="card-text"><strong>Director:</strong> {{ movie.director }}</p>
+                        <p class="card-text"><strong>Year:</strong> {{ movie.year }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
 </body>
 </html>
