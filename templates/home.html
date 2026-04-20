@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movie Watch List</title>
+</head>
+<body>
+    <h1>My Movie Watch List</h1>
+
+    {% for movie in movies %}
+        <div>
+            <p>Title: {{ movie.title }}</p>
+            <p>Genre: {{ movie.genre }}</p>
+            <p>Director: {{ movie.director }}</p>
+            <p>Year: {{ movie.year }}</p>
+            <hr>
+        </div>
+    {% endfor %}
+</body>
+</html>
